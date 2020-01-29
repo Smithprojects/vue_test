@@ -1,7 +1,7 @@
 <template>
-  <div class="users__info info" v-if="btnInfo">
+  <div class="users__info info" v-if="showUsersDescription">
                 <div class="info__wrapper" 
-                    v-for="(user, i) of usersapi"
+                    v-for="(user, i) of usersDescription"
                     v-bind:key="i"
                     >
                     <div class="info__description">
@@ -16,15 +16,15 @@
                         <p>zip: {{user.address.zip}}</p>
                     </div>
                 </div>
-                <div class="info__cls-btn" v-on:click="btnInfo = faulse">&times;</div>
+                <div class="info__cls-btn"  v-on:click="$emit('disable-description')">&times;</div>
             </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Info',
-    props: ['usersapi', 'btnInfo'],
+    name: 'UsersDescription',
+    props: ['showUsersDescription','usersDescription'],
     components: {},
     data() {
         return {
@@ -36,5 +36,27 @@ export default {
 </script>
 
 <style>
+.info {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    padding: 0 20px;
+    justify-content: center;
+}
 
+.info__wrapper {
+    padding: 0 10px;
+}
+
+.info__cls-btn {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
 </style>

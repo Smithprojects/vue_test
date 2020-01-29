@@ -3,7 +3,7 @@
         <table class="table__wrapper">
             <thead>
                 <tr class="table__head" >
-                    <th v-for="(thead, i) in tableHeader(users)"
+                    <th v-for="(thead, i) in tableHeader(usersFilter)"
                         v-bind:key="i"
                         >
                         {{thead}}
@@ -12,9 +12,9 @@
             </thead>
             <tbody>
                 <tr class="tr_hover" 
-                    v-for="(user, i) of users"
+                    v-for="(user, i) of usersFilter"
                     v-bind:key="i"
-                    v-on:click="$emit('activ-info', user.id)"
+                    v-on:click="$emit('enable-description', user.id)"
                     >
                     <td>{{user.id}}</td>
                     <td>{{user.firstName}}</td>
@@ -31,7 +31,7 @@
 
 export default {
     name: 'UsersTable',
-    props: ['users'],
+    props: ['usersFilter'],
     components: {},
     data() {
         return {
@@ -39,10 +39,10 @@ export default {
         };
     },
     methods: {
-        //метод для формирования заголовка таблицы
-        tableHeader(users) {
+        
+        tableHeader(usersFilter) {
             var result = []
-            Object.keys(users[0]).forEach((val, key)=>{
+            Object.keys(usersFilter[0]).forEach((val, key)=>{
                 if (key < 5) {
                     result.push(val)
                 }
@@ -63,11 +63,8 @@ export default {
 
 .table__wrapper {
     background: #0000005d;
-    /* padding-top: 20px; */
     padding: 40px;
     display: block;
-    /* width: 100%;
-    height: 100%; */
     border-radius: 20px;
     border-collapse: collapse;
     overflow-y: auto;
@@ -78,7 +75,6 @@ export default {
     font-size: 20px;
     padding-bottom: 10px;
     text-align: center;
-    /* font-weight: lighter; */
     border-bottom: 1px solid #ffffff49;
     width: 7%;
     

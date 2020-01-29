@@ -2,8 +2,8 @@
     <div class="search">
         <form class="search__form" @submit.prevent="onSubmit" >
             <div class="search__form__wrapper">
-                <input v-model="searchVal" class="search__form__input" type="saerch" placeholder="search">
-                <button v-on:click="btn = !btn" class="search__form__batton fa fa-search">search</button>
+                <input v-model="searchFormValue" class="search__form__input" type="saerch" placeholder="search">
+                <button class="search__form__batton ">send</button>
             </div>
         </form>
     </div>
@@ -13,21 +13,18 @@
 export default {
     data() {
         return {
-            searchVal: '',
-            btn: true
+            searchFormValue: '',
         };
     },
     watch: {
-        searchVal(value){
+        searchFormValue(value){
             console.log(value);
         }
     },
     methods: {
-        //метод передачи данных из формы в app компонент
         onSubmit() {
-            // console.log('Submit', this.searchVal)
-            this.$emit('on-submit', this.searchVal)
-            this.searchVal = ''
+            this.$emit('on-submit', this.searchFormValue)
+            this.searchFormValue = ''
         }
     }
 }
@@ -36,14 +33,17 @@ export default {
 <style>
 .search {
     text-align: right;
-    margin: 20px;
+    margin: 20px 0px;
+    position: relative;
+    min-height: 35px;
 }
 
 .search__form__wrapper {
-/* position: relative; */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 50%;
+    margin: 0px 20px;
+    flex-wrap: wrap;
 }
 
 .search__form__input {
@@ -62,28 +62,28 @@ export default {
     color: #fff;
 }
 
-.search__form__batton::before {
-    content: '\f002';
-    right: 8px;
-    position: absolute;
-}
-
 .search__form__batton {
     border: 1px solid #CA97C0;
     background-color: #CA97C0;
     color: #AD66D5;
     border-radius: 5px;
-    padding: 0 30px;
+    padding: 0 40px;
     text-transform: uppercase;
     position: relative;
     cursor: pointer;
 }
 
-.search__form__cursor {
+.search__form__btn-on {
     color: #CA97C0;
+    font-size: 25px;
+    position: absolute;
+    top: 12%;
+    right: 46%;
+    text-align: center;
+    animation: filterOpacity 2s linear;
 }
 
-.search__form__cursor:hover, .search__form__batton:hover {
+.search__form__btn-on:hover, .search__form__batton:hover {
   color: #fff;
 }
 
