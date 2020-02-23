@@ -44,7 +44,7 @@ export default {
         
         enableDescription(id) {
            this.usersDescription = this.usersFilter.filter(user => user.id == id)
-           this.showUsersDescription = !this.showUsersDescription
+           this.showUsersDescription = true
            console.log(this.usersDescription);
         },
         disableDescription() {

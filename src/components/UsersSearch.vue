@@ -3,7 +3,7 @@
         <form class="search__form" @submit.prevent="onSubmit" >
             <div class="search__form__wrapper">
                 <input v-model="searchFormValue" class="search__form__input" type="saerch" placeholder="search">
-                <button class="search__form__batton ">send</button>
+                <button class="search__form__batton ">search</button>
             </div>
         </form>
     </div>
